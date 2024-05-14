@@ -1,0 +1,33 @@
+<h1>Clients Dashboard</h1>
+<a routerLink="add" class="btn btn-md btn-success mb-2"> Add client</a>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th style="width: 15%">Fullname</th>
+            <th style="width: 15%">Email</th>
+            <th style="width: 15%">Personal Mobile</th>
+            <th style="width: 10%">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let client of clients">
+            <td>{{client.firstName}} {{client.lastName}}</td>
+            <td>{{client.email}}</td>
+            <td>{{client.personalMobile1}} / {{client.personalMobile2}}</td>
+            <td class="d-flex gap-3 ">
+                <a routerLink="view/{{client.id}}" class="btn btn-md btn-primary mr-1">View</a>
+                <a routerLink="edit/{{client.id}}" class="btn btn-md btn-warning mr-1">Edit</a>
+                <button class="btn btn-md btn-danger btn-delete-client" (click)="deleteClient(client.id)">
+                    <!--  [disabled]="client.isDeleting"  -->
+                    <!-- <span class="spinner-border spinner-border-sm"></span> -->
+                    <span>Delete</span>
+                </button>
+            </td>
+        </tr>
+        <tr *ngIf="!clients">
+            <td colspan="7" class="text-center">
+                <span class="spinner-border spinner-border-lg align-center"></span>
+            </td>
+        </tr>
+    </tbody>
+</table>

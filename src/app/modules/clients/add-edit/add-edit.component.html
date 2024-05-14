@@ -1,0 +1,130 @@
+<h1 *ngIf="isAddMode">Add Client</h1>
+<h1 *ngIf="!isAddMode">Edit Client</h1>
+<form [formGroup]="addClientForm" (ngSubmit)="onSubmit()">
+
+    <div class="d-flex gap-4">
+        <div class="card p-5 form-row w-50 shadow-sm  ">
+            <h2 class="card-title">Personal Informations</h2>
+            <div class="form-row mb-3 d-flex gap-3 justify-content-around  ">
+                <div class="form-group w-100">
+                    <label>Last Name</label>
+                    <input type="text" formControlName="lastName" class="form-control" />
+                    <small class="text-danger"
+                        *ngIf="addClientForm.get('lastName')?.invalid && addClientForm.get('lastName')?.touched">
+                        Last Name is required.
+                    </small>
+                </div>
+                <div class="form-group  w-100">
+                    <label>First Name</label>
+                    <input type="text" formControlName="firstName" class="form-control" />
+                    <small class="text-danger"
+                        *ngIf="addClientForm.get('firstName')?.invalid && addClientForm.get('firstName')?.touched">
+                        First Name is required.
+                    </small>
+                </div>
+            </div>
+
+            <div class="form-group mb-3">
+                <label>Email</label>
+                <input type="email" formControlName="email" class="form-control" />
+                <small class="text-danger"
+                    *ngIf="addClientForm.get('email')?.invalid && addClientForm.get('email')?.touched">
+                    Email is required.
+                </small>
+            </div>
+            <div class="form-group  mb-3">
+                <label>Personal Mobile 1</label>
+                <input type="number" formControlName="personalMobile1" class="form-control" />
+                <small class="text-danger"
+                    *ngIf="addClientForm.get('personalMobile1')?.invalid && addClientForm.get('personalMobile1')?.touched">
+                    Personal Mobile 1 is required.
+                </small>
+            </div>
+
+            <div class="form-group mb-3">
+                <label>Personal Mobile 2</label>
+                <input type="number" formControlName="personalMobile2" class="form-control" />
+            </div>
+            <div class="form-group mb-3">
+                <label>Birth Date</label>
+                <input type="date" formControlName="birthDate" class="form-control" />
+                <small class="text-danger"
+                    *ngIf="addClientForm.get('birthDate')?.invalid && addClientForm.get('birthDate')?.touched">
+                    Birth Date 1 is required.
+                </small>
+            </div>
+
+
+        </div>
+
+        <div class="card p-5 form-row w-50 shadow-sm">
+            <h2 class="card-title">Payment Informations</h2>
+
+            <div class="form-row">
+                <div class="form-group mb-3">
+                    <label>RDV Payment Handler</label>
+                    <input type="text" formControlName="rdvPaymentHandler" class="form-control" />
+                    <small class="text-danger"
+                        *ngIf="addClientForm.get('rdvPaymentHandler')?.invalid && addClientForm.get('rdvPaymentHandler')?.touched">
+                        RDV Payment Handler is required.
+                    </small>
+                </div>
+                <div class="form-group mb-3">
+                    <label>Card Holder</label>
+                    <input type="text" formControlName="cardHolder" class="form-control" />
+                    <small class="text-danger"
+                        *ngIf="addClientForm.get('cardHolder')?.invalid && addClientForm.get('cardHolder')?.touched">
+                        Card Holder is required.
+                    </small>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group mb-3">
+                    <label>Card Number</label>
+                    <input type="number" formControlName="cardNumber" class="form-control" />
+                    <small class="text-danger"
+                        *ngIf="addClientForm.get('cardNumber')?.invalid && addClientForm.get('cardNumber')?.touched">
+                        Card Number is required.
+                    </small>
+                </div>
+                <div class="d-flex gap-3">
+                    <div class="form-group mb-3">
+                        <label>Month</label>
+                        <input type="number" formControlName="month" class="form-control" />
+                        <small class="text-danger"
+                            *ngIf="addClientForm.get('month')?.invalid && addClientForm.get('month')?.touched">
+                            Month is required.
+                        </small>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label>Year</label>
+                        <input type="number" formControlName="year" class="form-control" />
+                        <small class="text-danger"
+                            *ngIf="addClientForm.get('year')?.invalid && addClientForm.get('year')?.touched">
+                            Year is required.
+                        </small>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label>CVV</label>
+                        <input type="number" formControlName="cvv" class="form-control" />
+                        <small class="text-danger"
+                            *ngIf="addClientForm.get('cvv')?.invalid && addClientForm.get('cvv')?.touched">
+                            CVV is required.
+                        </small>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="form-group d-flex gap-2 mt-4">
+        <button [disabled]="loading" class="btn btn-primary">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+            Save
+        </button>
+        <a routerLink="/clients" class="btn btn-warning">Cancel</a>
+    </div>
+</form>

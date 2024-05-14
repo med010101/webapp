@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card border-0 shadow ">
+          <div class="card-header">
+            <h1 class="text-center py-3 mb-0">Client Details</h1>
+          </div>
+          <div class="card-body p-5">
+            <div *ngIf="client" class="w-100">
+              <p><strong>First Name:</strong> {{ client.firstName }}</p>
+              <p><strong>Last Name:</strong> {{ client.lastName }}</p>
+              <p><strong>Email:</strong> {{ client.email }}</p>
+              <p><strong>Personal Mobile 1:</strong> {{ client.personalMobile1 }}</p>
+              <p><strong>Personal Mobile 2:</strong> {{ client.personalMobile2 }}</p>
+              <p><strong>Birth Date:</strong> {{ client.birthDate }}</p>
+              <p><strong>RDV Payment Handler:</strong> {{ client.rdvPaymentHandler }}</p>
+              <p><strong>Card Holder:</strong> {{ client.cardHolder }}</p>
+              <p><strong>Card Number:</strong> {{ client.cardNumber }}</p>
+              <p><strong>Month:</strong> {{ client.month }}</p>
+              <p><strong>Year:</strong> {{ client.year }}</p>
+              <p><strong>CVV:</strong> {{ client.cvv }}</p>
+              <div class="d-flex justify-content-center gap-4">
+                <button class="btn btn-primary px-5" (click)="onEdit()">Edit</button>
+                <button class="btn btn-secondary px-5" (click)="onBack()">Back</button>
+              </div>
+            </div>
+            <div *ngIf="!client" class="text-center">
+              <p>Loading client details...</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
