@@ -8,6 +8,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { SharedModule } from './shared/shared.module';
+import { HomeComponent } from './modules/home/home.component';
 
 @NgModule({
   declarations: [

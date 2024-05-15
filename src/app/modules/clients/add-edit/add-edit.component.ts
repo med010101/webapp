@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ClientsService } from '../../../services/clients.service';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-add-edit',
@@ -14,12 +15,15 @@ export class AddEditComponent implements OnInit {
   isAddMode!: boolean;
   loading = false;
   submitted = false;
+  paymentInfo = false;
+
 
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private clientService: ClientsService
+    private clientService: ClientsService,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -77,8 +81,7 @@ export class AddEditComponent implements OnInit {
         error: (e) => {
           console.error('Error occurred while creating client', e);
           this.loading = false;
-        },
-        complete: () => console.info('complete') 
+        }
     }
       );
     
@@ -93,9 +96,16 @@ export class AddEditComponent implements OnInit {
           console.error('Error occurred while updating client', e);
           this.loading = false;
         },
-        complete: () => console.info('complete')
       });
     }
+  }
+
+  closeDialog(): void {
+    const confimation = confirm('Are you sure you want to discard the changes?');
+    if(confimation) {
+      this.dialog.closeAll();
+    }
+   
   }
   }
 

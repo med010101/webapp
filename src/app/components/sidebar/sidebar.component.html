@@ -1,20 +1,29 @@
 <div class="side-navbar active-nav d-flex justify-content-between flex-wrap flex-column" id="sidebar">
     <ul class="nav flex-column text-white w-100">
-        <li routerLink="/" class="nav-link" routerLinkActive="active">
-            <fa-icon [icon]="faHouse"></fa-icon>
-            <span class="mx-2">Home</span>
-        </li>
-        <li routerLink="/clients" class="nav-link" routerLinkActive="active">
-            <fa-icon [icon]="faUser"></fa-icon>
-            <span class="mx-2">Clients</span>
-        </li>
-        <li href="#" class="nav-link" routerLinkActive="active">
-            <fa-icon [icon]="faPaperPlane"></fa-icon>
-            <span class="mx-2">Applications</span>
-        </li>
-        <li href="#" class="nav-link" routerLinkActive="active">
-            <fa-icon [icon]="faUsers"></fa-icon>
-            <span class="mx-2">Accounts</span>
-        </li>
+        <div class=" border-top p-1">
+            <li routerLink="/" class="nav-link" routerLinkActive="active">
+                <fa-icon [icon]="faHouse"></fa-icon>
+                <span class="mx-2">Home</span>
+
+            </li>
+        </div>
+        <div class="border-bottom border-top p-1">
+            <li routerLink="/clients" class="nav-link" routerLinkActive="active">
+                <fa-icon [icon]="faUser"></fa-icon>
+                <span class="mx-2 ">Clients</span>
+            </li>
+        </div>
+        <div class="border-bottom p-1">
+            <li routerLink="/applications" class="nav-link" routerLinkActive="active">
+                <fa-icon [icon]="faPaperPlane"></fa-icon>
+                <span class="mx-2">Applications</span>
+            </li>
+        </div>
+        <div class="border-bottom p-1 ">
+            <li href="#" class="nav-link" routerLinkActive="active">
+                <fa-icon [icon]="faUsers"></fa-icon>
+                <span class="mx-2">Accounts</span>
+            </li>
+        </div>
     </ul>
 </div>

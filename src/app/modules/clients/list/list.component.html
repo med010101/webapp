@@ -1,33 +1,68 @@
 <h1>Clients Dashboard</h1>
-<a routerLink="add" class="btn btn-md btn-success mb-2"> Add client</a>
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th style="width: 15%">Fullname</th>
-            <th style="width: 15%">Email</th>
-            <th style="width: 15%">Personal Mobile</th>
-            <th style="width: 10%">Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let client of clients">
-            <td>{{client.firstName}} {{client.lastName}}</td>
-            <td>{{client.email}}</td>
-            <td>{{client.personalMobile1}} / {{client.personalMobile2}}</td>
-            <td class="d-flex gap-3 ">
-                <a routerLink="view/{{client.id}}" class="btn btn-md btn-primary mr-1">View</a>
-                <a routerLink="edit/{{client.id}}" class="btn btn-md btn-warning mr-1">Edit</a>
+<a routerLink="add" class="btn btn-md btn-success mb-4"><fa-icon [icon]="faPlus" class="p-1"></fa-icon>  Add client</a>
+
+<div class="shadow-sm p-3 mb-5 bg-white rounded">
+    <div class="d-flex justify-content-end mb-3">
+        <mat-form-field appearance="outline">
+            <mat-label>Search</mat-label>
+            <input matInput (keyup)="applyFilter($event)" #input>
+            <mat-icon matSuffix class="p-3"><fa-icon [icon]="faSearch"></fa-icon></mat-icon>
+        </mat-form-field>
+    </div>
+
+    <table mat-table [dataSource]="dataSource">
+        <!-- Firstname Column -->
+        <ng-container matColumnDef="firstName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Firstname </th>
+            <td mat-cell *matCellDef="let client" class="py-4"> {{client.firstName}} </td>
+        </ng-container>
+
+        <!-- Lastname Column -->
+        <ng-container matColumnDef="lastName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Lastname </th>
+            <td mat-cell *matCellDef="let client" class="py-4"> {{client.lastName}} </td>
+        </ng-container>
+
+        <!-- Phone Column -->
+        <ng-container matColumnDef="personalMobile">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Phone Number </th>
+            <td mat-cell *matCellDef="let client" class="py-4"> {{client.personalMobile1}} / {{client.personalMobile2}} </td>
+        </ng-container>
+
+        <!-- Email Column -->
+        <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+            <td mat-cell *matCellDef="let client" class="py-4"> {{client.email}} </td>
+        </ng-container>
+
+        <!-- Actions Column -->
+        <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef> Actions </th>
+            <td mat-cell *matCellDef="let client" class="py-4" class="">
+                <!-- Add action buttons here -->
+                <a routerLink="view/{{client.id}}" class="btn btn-md btn-primary"> <fa-icon [icon]="faEye" class="m-1"></fa-icon>View</a>
+                <a routerLink="edit/{{client.id}}" class="btn btn-md btn-warning m-2"><fa-icon [icon]="faEdit" class="m-1"></fa-icon>Edit</a>
                 <button class="btn btn-md btn-danger btn-delete-client" (click)="deleteClient(client.id)">
                     <!--  [disabled]="client.isDeleting"  -->
                     <!-- <span class="spinner-border spinner-border-sm"></span> -->
+                    <fa-icon [icon]="faTrash" class="m-1"></fa-icon>
                     <span>Delete</span>
                 </button>
             </td>
+        </ng-container>
+
+
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let client; columns: displayedColumns;"></tr>
+
+        <!-- Row shown when there is no matching data. -->
+        <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="5">No data matching the filter "{{input.value}}"</td>
         </tr>
-        <tr *ngIf="!clients">
-            <td colspan="7" class="text-center">
-                <span class="spinner-border spinner-border-lg align-center"></span>
-            </td>
-        </tr>
-    </tbody>
-</table>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                 showFirstLastButtons
+                 aria-label="Select page of clients" class="mt-5">
+  </mat-paginator>
+</div>
